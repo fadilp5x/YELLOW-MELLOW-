@@ -1443,15 +1443,15 @@ function renderWinnersScreen(){
       <div class="wf-sub">Fill in winner names then click ANNOUNCE</div>
       <div class="winner-form">
         <div class="wf-field">
-          <div class="wf-label">🥇 1ST PLACE</div>
+          <label class="wf-label" for="in-first">🥇 1ST PLACE</label>
           <input class="wf-input" id="in-first" placeholder="Champion Name" maxlength="40">
         </div>
         <div class="wf-field">
-          <div class="wf-label">🥈 2ND PLACE</div>
+          <label class="wf-label" for="in-second">🥈 2ND PLACE</label>
           <input class="wf-input" id="in-second" placeholder="Runner-up Name" maxlength="40">
         </div>
         <div class="wf-field">
-          <div class="wf-label">🥉 3RD PLACE</div>
+          <label class="wf-label" for="in-third">🥉 3RD PLACE</label>
           <input class="wf-input" id="in-third" placeholder="Third Place Name" maxlength="40">
         </div>
         <button class="announce-btn" id="announce-btn">🏆 ANNOUNCE WINNERS ⚡</button>
@@ -1644,11 +1644,11 @@ function renderPresenterPanel(){
   const urgent = phase==='timeup';
 
   panel.innerHTML = `
-    <button class="pp-btn pp-reveal ${urgent?'urgent':''}" ${canReveal?'':'disabled'} id="pp-reveal">REVEAL ⚡</button>
-    <button class="pp-btn pp-next" ${canNext?'':'disabled'} id="pp-next">NEXT →</button>
-    <button class="pp-btn pp-skip" ${canSkip?'':'disabled'} id="pp-skip">SKIP TIMER</button>
-    <button class="pp-btn pp-pause ${STATE.timerPaused?'paused':''}" ${phase==='revealed'?'disabled':''} id="pp-pause">${STATE.timerPaused?'▶ RESUME':'⏸ PAUSE'}</button>
-    <button class="pp-btn pp-mute" id="pp-mute">${STATE.isMuted?'🔇 MUTED':'🔊 SOUND'}</button>`;
+    <button class="pp-btn pp-reveal ${urgent?'urgent':''}" ${canReveal?'':'disabled'} id="pp-reveal" title="Shortcut: Space / R">REVEAL ⚡</button>
+    <button class="pp-btn pp-next" ${canNext?'':'disabled'} id="pp-next" title="Shortcut: Space / N / Right Arrow">NEXT →</button>
+    <button class="pp-btn pp-skip" ${canSkip?'':'disabled'} id="pp-skip" title="Shortcut: S">SKIP TIMER</button>
+    <button class="pp-btn pp-pause ${STATE.timerPaused?'paused':''}" ${phase==='revealed'?'disabled':''} id="pp-pause" title="Shortcut: P">${STATE.timerPaused?'▶ RESUME':'⏸ PAUSE'}</button>
+    <button class="pp-btn pp-mute" id="pp-mute" title="Shortcut: M">${STATE.isMuted?'🔇 MUTED':'🔊 SOUND'}</button>`;
   document.getElementById('pp-reveal').addEventListener('click',triggerReveal);
   document.getElementById('pp-next').addEventListener('click',advanceQuestion);
   document.getElementById('pp-skip').addEventListener('click',skipTimer);

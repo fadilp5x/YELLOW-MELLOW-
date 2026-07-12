@@ -1,0 +1,3 @@
+## 2024-07-12 - Form Accessibility & Tooltip Hints
+**Learning:** Found that the custom winner form in Yellow Mellow used simple `<div>` elements as visual labels instead of semantic `<label>` tags. Also noted that the presenter panel relied heavily on keyboard shortcuts (Space, R, N, P, S, M, etc.) without displaying hints on hover, which can lead to usability friction if the presenter forgets the shortcuts.
+**Action:** Always ensure custom forms use semantic `<label>` elements connected via `for` attributes to inputs, improving screen reader accessibility and input clickability. Add `title` tooltips to control panel buttons that correspond to keyboard shortcuts to reinforce and teach the user these quick actions.
