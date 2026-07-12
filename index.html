@@ -166,6 +166,14 @@ input{font-family:inherit;outline:none}
 .two-table-wrap{display:flex;flex-direction:column;gap:28px}
 .sub-table-title{font-family:'Fredoka One',cursive;font-size:clamp(18px,1.6vw,26px);color:var(--yellow-primary);margin-bottom:8px}
 
+.mcq-container{display:flex;flex-direction:column;gap:24px}
+.mcq-item{background:#1A1A1A;border:1px solid var(--black-border);border-radius:12px;padding:20px}
+.mcq-q{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(14px,1.4vw,20px);color:var(--white);margin-bottom:12px}
+.mcq-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mcq-option{font-family:'Nunito',sans-serif;font-weight:700;font-size:clamp(13px,1.3vw,18px);color:#CCC;background:var(--black-card);border:1px solid #333;padding:12px 16px;border-radius:8px;transition:all .2s}
+.mcq-option.revealed{color:var(--correct-green);border-color:var(--correct-green);background:rgba(0,230,118,0.12)}
+.passage-box{font-family:'Nunito',sans-serif;font-weight:700;font-size:clamp(18px,1.8vw,28px);color:var(--white);line-height:1.6;background:#1A1A1A;padding:32px;border-radius:12px;border-left:6px solid var(--yellow-primary)}
+
 /* ═══════════════════════════════════════════════════════ */
 /* TIMER                                                  */
 /* ═══════════════════════════════════════════════════════ */
@@ -293,232 +301,150 @@ gsap.registerPlugin(TextPlugin);
 /* QUIZ DATA                                              */
 /* ═══════════════════════════════════════════════════════ */
 const QUIZ_DATA = {
-  title: "Yellow Mellow Flash Quiz",
-  subtitle: "English Grammar · Pre-degree Level",
+  title: "🐝 JUNIOR SPELLING BEE",
+  subtitle: "Pronunciation, Grammar & Dictation",
   vimeoHeroBgId: "1195115386",
   timerDefault: 30,
   rounds: [
     {
-      id:1,name:"ROUND 1",subtitle:"Warm-Up — 1 Mark Each",
-      description:"Simple identification and matching.",
-      introQuote:"Every champion was once a beginner. Let's go! ⚡",
-      endQuote:"Round 1 DONE! You're on fire! ⚡",
-      color:"#FFD600",
-      questions:[
-        {id:"q1",type:"match",category:"SENTENCES",title:"Q1 — Types of Sentences",instruction:"Match each sentence to its correct type.",marks:"1 mark each | Total: 5 marks",columnA:"Sentence",columnB:"Type",items:[
-          {question:"He sat on the wall.",answer:"Declarative"},
-          {question:"Where do you live?",answer:"Interrogative"},
-          {question:"Sit here.",answer:"Imperative"},
-          {question:"What a shame!",answer:"Exclamatory"},
-          {question:"He doesn't wake up early.",answer:"Negative"}
-        ]},
-        {id:"q2",type:"match",category:"NOUNS",title:"Q2 — Noun Types",instruction:"Match each group of words to its noun type.",marks:"1 mark each | Total: 5 marks",columnA:"Words",columnB:"Noun Type",items:[
-          {question:"Bravery, theft, poverty",answer:"Abstract noun"},
-          {question:"Book, pen, apple",answer:"Countable noun"},
-          {question:"Milk, oil, sugar, gold",answer:"Uncountable noun"},
-          {question:"London, India, Amazon",answer:"Proper noun"},
-          {question:"A herd of cattle, a flock of birds",answer:"Collective noun"}
-        ]},
-        {id:"q3",type:"fillin",category:"GENDER",title:"Q3 — Opposite Gender",instruction:"Write the opposite gender for each word.",marks:"1 mark each | Total: 7 marks",columnA:"Word",columnB:"Opposite Gender",items:[
-          {question:"Boy",answer:"Girl"},
-          {question:"Lion",answer:"Lioness"},
-          {question:"Hero",answer:"Heroine"},
-          {question:"Cock",answer:"Hen"},
-          {question:"Sparrow",answer:"Sparrow (same for both genders)"},
-          {question:"Gander",answer:"Goose"},
-          {question:"Drone",answer:"Bee / Queen bee"}
-        ]},
-        {id:"q4",type:"match",category:"NOUNS",title:"Q4 — Singular & Plural Usage",instruction:"Match each word/group to how it is used in number.",marks:"1 mark each | Total: 4 marks",columnA:"Word / Group",columnB:"Number Usage",items:[
-          {question:"Sheep, deer, fish",answer:"Singular and plural alike"},
-          {question:"Scissors, spectacles, tongs",answer:"Used only in plural form"},
-          {question:"Mathematics, physics, news",answer:"Looks plural but is singular"},
-          {question:"People, cattle, police",answer:"Looks singular but used as plural"}
-        ]}
+      id: 1, name: "ROUND 1", subtitle: "Pronunciation",
+      description: "Spoken accuracy & clarity.",
+      introQuote: "Speak clearly and confidently! ⚡",
+      endQuote: "Round 1 DONE! Great pronunciation! ⚡",
+      color: "#FFD600",
+      questions: [
+        {
+          id: "r1q1", type: "table4col", category: "PRONUNCIATION", title: "Word Pronunciation",
+          instruction: "Read the word aloud and use it in a sentence if asked.",
+          marks: "2 marks each | Total: 20 marks",
+          col1: "Word", col2: "Phonetic Guide", col3: "Part of Speech", col4: "Sample Sentence",
+          items: [
+            { c1: "Colonel", c2: "KUR-nuhl", c3: "noun", c4: "The colonel inspected the troops at dawn.", blankCol: 2 },
+            { c1: "Choir", c2: "KWY-er", c3: "noun", c4: "The choir sang beautifully at the assembly.", blankCol: 2 },
+            { c1: "Food", c2: "foood", c3: "adjective", c4: "There was a subtle change in her tone.", blankCol: 2 },
+            { c1: "Memoir", c2: "Mem vaa", c3: "noun", c4: "The competition is scheduled for Wednesday.", blankCol: 2 },
+            { c1: "Hierarchy", c2: "HY-uh-rar-kee", c3: "noun", c4: "Every organisation has its own hierarchy.", blankCol: 2 },
+            { c1: "Entrepreneur", c2: "ahn-truh-pruh-NUR", c3: "noun", c4: "The young entrepreneur started her own bakery.", blankCol: 2 },
+            { c1: "Phenomenon", c2: "fih-NOM-uh-non", c3: "noun", c4: "A rainbow is a beautiful natural phenomenon.", blankCol: 2 },
+            { c1: "Rural", c2: "ROOR-uhl", c3: "adjective", c4: "They grew up in a small rural village.", blankCol: 2 },
+            { c1: "Genre", c2: "ZHAHN-ruh", c3: "noun", c4: "Mystery is her favourite genre of fiction.", blankCol: 2 },
+            { c1: "Anemone", c2: "uh-NEM-uh-nee", c3: "noun", c4: "The clownfish hid inside the sea anemone.", blankCol: 2 }
+          ]
+        }
       ]
     },
     {
-      id:2,name:"ROUND 2",subtitle:"Core Grammar — 2 Marks Each",
-      description:"Gender, degrees of comparison, and pronouns.",
-      introQuote:"Round 2 means business. Are you ready? ⚡",
-      endQuote:"TWO DOWN! The crowd goes wild! ⚡⚡",
-      color:"#FFB300",
-      questions:[
-        {id:"q5",type:"fillin",category:"GENDER",title:"Q5 — Feminine Forms",instruction:"Write the feminine form of each masculine word.",marks:"2 marks each | Total: 16 marks",columnA:"Masculine",columnB:"Feminine",items:[
-          {question:"Drake",answer:"Duck"},
-          {question:"Nephew",answer:"Niece"},
-          {question:"Wizard",answer:"Witch"},
-          {question:"Sultan",answer:"Sultana"},
-          {question:"Actor",answer:"Actress"},
-          {question:"Peacock",answer:"Peahen"},
-          {question:"Poet",answer:"Poetess"},
-          {question:"Prophet",answer:"Prophetess"}
-        ]},
-        {id:"q6",type:"table3col",category:"COMPARISON",title:"Q6 — Degrees of Comparison",instruction:"Fill in the blank cell in each row.",marks:"2 marks each blank | Total: 16 marks",col1:"Positive",col2:"Comparative",col3:"Superlative",items:[
-          {c1:"Good",c2:"Better",c3:"___",answer:"Best",blankCol:3},
-          {c1:"Much",c2:"___",c3:"Most",answer:"More",blankCol:2},
-          {c1:"Late",c2:"Later",c3:"___",answer:"Latest / Last",blankCol:3},
-          {c1:"___",c2:"Farther / Further",c3:"Farthest/Furthest",answer:"Far",blankCol:1},
-          {c1:"Near",c2:"___",c3:"Nearest / Next",answer:"Nearer",blankCol:2},
-          {c1:"Little",c2:"___",c3:"Least",answer:"Less",blankCol:2},
-          {c1:"Old",c2:"Older / Elder",c3:"___",answer:"Oldest / Eldest",blankCol:3},
-          {c1:"Bad",c2:"___",c3:"Worst",answer:"Worse",blankCol:2}
-        ]},
-        {id:"q7",type:"match",category:"PRONOUNS",title:"Q7 — Pronoun Cases",instruction:"Match each pronoun group to its grammatical case.",marks:"2 marks each | Total: 8 marks",columnA:"Pronoun Group",columnB:"Case",items:[
-          {question:"I, you, he, she, we, they",answer:"Nominative (subject case)"},
-          {question:"Me, you, him, her, us, them",answer:"Accusative (object case)"},
-          {question:"My/mine, your/yours, his, hers",answer:"Possessive case"},
-          {question:"Myself, yourself, himself, herself",answer:"Reflexive / Emphatic case"}
-        ]},
-        {id:"q8",type:"match",category:"PRONOUNS",title:"Q8 — Types of Pronouns",instruction:"Identify the type of pronoun used in each sentence.",marks:"2 marks each | Total: 14 marks",columnA:"Sentence",columnB:"Pronoun Type",items:[
-          {question:"He looked at himself in the mirror.",answer:"Reflexive pronoun"},
-          {question:"The CEO herself announced the decision.",answer:"Intensive pronoun"},
-          {question:"This is a pen.",answer:"Demonstrative pronoun"},
-          {question:"Who is playing outside?",answer:"Interrogative pronoun"},
-          {question:"The girl who won is my friend.",answer:"Relative pronoun"},
-          {question:"Anyone can join the club.",answer:"Indefinite pronoun"},
-          {question:"They greeted each other warmly.",answer:"Reciprocal pronoun"}
-        ]}
+      id: 2, name: "ROUND 2", subtitle: "Spelling & Dictation",
+      description: "Listening & spelling + Spotting spelling errors.",
+      introQuote: "Listen carefully. ⚡",
+      endQuote: "Round 2 DONE! ⚡",
+      color: "#FFB300",
+      questions: [
+        {
+          id: "r2q1", type: "list_hidden", category: "SPELLING", title: "Word List",
+          instruction: "Listen to the word and spell it. (Words are hidden until revealed)",
+          marks: "Total: 30 marks",
+          items: [
+            "Believe", "Necessary", "Rhythm", "Separate", "Pharaoh", "Occasion", "Conscience", "Miscellaneous", "Bureaucracy", "Camaraderie", "Chrysanthemum"
+          ]
+        },
+        {
+          id: "r2q2", type: "fillin", category: "SPELLING", title: "Quick Spelling Check",
+          instruction: "Identify the misspelled word and provide the correct spelling.",
+          marks: "1 mark each | Total: 10 marks",
+          columnA: "Incorrect Spelling", columnB: "Candidate's Correction",
+          items: [
+            { question: "Definately", answer: "Definitely" },
+            { question: "Untill", answer: "Until" },
+            { question: "Wich", answer: "Which" },
+            { question: "Concious", answer: "Conscious" },
+            { question: "Neccessary", answer: "Necessary" },
+            { question: "Recieve", answer: "Receive" },
+            { question: "Tommorow", answer: "Tomorrow" },
+            { question: "Independant", answer: "Independent" },
+            { question: "Publically", answer: "Publicly" },
+            { question: "Rythm", answer: "Rhythm" }
+          ]
+        }
       ]
     },
     {
-      id:3,name:"ROUND 3",subtitle:"Applied Grammar — 3 Marks Each",
-      description:"Verb forms, verbals, adverbs, prepositions, conjunctions, concord, punctuation.",
-      introQuote:"Only legends reach Round 3. Prove yourself. ⚡",
-      endQuote:"THREE ROUNDS SURVIVED! LEGENDARY! ⚡⚡⚡",
-      color:"#FF6F00",
-      questions:[
-        {id:"q9",type:"table3col",category:"VERBS",title:"Q9 — Verb Forms (V1 / V2 / V3)",instruction:"Fill in the missing V2 (past simple) or V3 (past participle). Starred (*) rows are tricky!",marks:"3 marks per blank | Total: 48 marks",col1:"V1 (Base)",col2:"V2 (Past Simple)",col3:"V3 (Past Participle)",items:[
-          {c1:"Cut",c2:"Cut",c3:"___",answer:"Cut",blankCol:3,star:false},
-          {c1:"Be",c2:"___",c3:"Been",answer:"Was / Were",blankCol:2,star:false},
-          {c1:"Begin",c2:"___",c3:"Begun",answer:"Began",blankCol:2,star:false},
-          {c1:"Bite",c2:"Bit",c3:"___",answer:"Bitten",blankCol:3,star:false},
-          {c1:"Swear",c2:"___",c3:"Sworn",answer:"Swore",blankCol:2,star:false},
-          {c1:"Spread",c2:"Spread",c3:"___",answer:"Spread",blankCol:3,star:false},
-          {c1:"Melt",c2:"Melted",c3:"___",answer:"Melted / Molten",blankCol:3,star:false},
-          {c1:"Freeze",c2:"___",c3:"Frozen",answer:"Froze",blankCol:2,star:true},
-          {c1:"Burst",c2:"Burst",c3:"___",answer:"Burst",blankCol:3,star:true},
-          {c1:"Forbid",c2:"___",c3:"Forbidden",answer:"Forbade",blankCol:2,star:true},
-          {c1:"Stride",c2:"Strode",c3:"___",answer:"Stridden",blankCol:3,star:true},
-          {c1:"Weave",c2:"___",c3:"Woven",answer:"Wove",blankCol:2,star:true},
-          {c1:"Slay",c2:"Slew",c3:"___",answer:"Slain",blankCol:3,star:true},
-          {c1:"Spit",c2:"___",c3:"Spat / Spit",answer:"Spat / Spit",blankCol:2,star:true},
-          {c1:"Cleave",c2:"Clove / Cleft",c3:"___",answer:"Cloven / Cleft",blankCol:3,star:true},
-          {c1:"Tread",c2:"___",c3:"Trodden",answer:"Trod",blankCol:2,star:true}
-        ]},
-        {id:"q10",type:"match",category:"VERBALS",title:"Q10 — Verbals",instruction:"Match each sentence to its verbal form.",marks:"3 marks each | Total: 18 marks",columnA:"Sentence",columnB:"Verbal Type",items:[
-          {question:"Dancing is fun.",answer:"Gerund (verb used as noun)"},
-          {question:"The dancing child skipped around.",answer:"Participial adjective"},
-          {question:"She is studying for the exam.",answer:"Present participle (continuous)"},
-          {question:"Hearing the noise, the boy woke up.",answer:"Present participle phrase"},
-          {question:"Blinded by the storm, they fell into disorder.",answer:"Past participle phrase"},
-          {question:"A rolling stone gathers no moss.",answer:"Participial adjective"}
-        ]},
-        {id:"q11",type:"match",category:"ADVERBS",title:"Q11 — Adverb Types",instruction:"Match each group of examples to its adverb type.",marks:"3 marks each | Total: 21 marks",columnA:"Examples",columnB:"Adverb Type",items:[
-          {question:"Now, then, everyday, yesterday",answer:"Adverb of time"},
-          {question:"Twice, often, always, never, ever",answer:"Adverb of frequency"},
-          {question:"Everywhere, outside, there, here",answer:"Adverb of place"},
-          {question:"Stupidly, melodiously, swiftly",answer:"Adverb of manner"},
-          {question:"Surely, certainly, positively",answer:"Adverb of affirmation"},
-          {question:"Almost, rather, nearly, quite",answer:"Adverb of degree"},
-          {question:"Hence, therefore, since, because",answer:"Adverb of reason / cause"}
-        ]},
-        {id:"q12",type:"fillin",category:"PREPOSITIONS",title:"Q12 — Prepositions",instruction:"Fill in the blank with the correct preposition. Choose from: by · on · at · for · in · under · across",marks:"3 marks each | Total: 24 marks",columnA:"Sentence",columnB:"Preposition",items:[
-          {question:"We travelled ___ air to reach the city.",answer:"by"},
-          {question:"The book is ___ the table.",answer:"on"},
-          {question:"She arrived ___ Christmas morning.",answer:"on"},
-          {question:"The meeting is scheduled ___ 31st March.",answer:"on"},
-          {question:"They discussed the issue ___ detail.",answer:"in"},
-          {question:"The cat hid ___ the sofa.",answer:"under"},
-          {question:"She has been waiting ___ an hour.",answer:"for"},
-          {question:"He swam ___ the river alone.",answer:"across"}
-        ]},
-        {id:"q13",type:"fillin",category:"CONJUNCTIONS",title:"Q13 — Correlative Conjunctions",instruction:"Complete each sentence with the correct paired conjunction.",marks:"3 marks each | Total: 18 marks",columnA:"Sentence",columnB:"Answer",items:[
-          {question:"Neither the teacher ___ the students arrived on time.",answer:"nor"},
-          {question:"Hardly had I entered the room ___ the phone rang.",answer:"when"},
-          {question:"You must work hard lest you ___ fail.",answer:"should"},
-          {question:"Not only did she sing, ___ she danced beautifully.",answer:"but also"},
-          {question:"No sooner had we boarded the train ___ it started.",answer:"than"},
-          {question:"Such rituals are seldom ___ never observed here.",answer:"or"}
-        ]},
-        {id:"q14",type:"fillin",category:"CONCORD",title:"Q14 — Subject-Verb Concord",instruction:'Fill in "is", "are", "was", or "were" as appropriate.',marks:"3 marks each | Total: 18 marks",columnA:"Sentence",columnB:"Answer",items:[
-          {question:"John and Mary ___ going for a picnic.",answer:"are"},
-          {question:"The principal and manager ___ invited. (two different people)",answer:"were"},
-          {question:"The poet and dramatist ___ a genius. (same person)",answer:"is"},
-          {question:"Bread and butter ___ his favourite food.",answer:"is"},
-          {question:"The principal along with his staff ___ going.",answer:"is"},
-          {question:"The boys as well as girls ___ attending the fair.",answer:"are"}
-        ]},
-        {id:"q15",type:"match",category:"PUNCTUATION",title:"Q15 — Punctuation Marks",instruction:"Write the name of each punctuation symbol.",marks:"3 marks each | Total: 27 marks",columnA:"Symbol",columnB:"Name",items:[
-          {question:"—",answer:"Dash"},
-          {question:"-",answer:"Hyphen"},
-          {question:";",answer:"Semicolon"},
-          {question:",",answer:"Comma"},
-          {question:":",answer:"Colon"},
-          {question:'" "',answer:"Double inverted commas / Quotation marks"},
-          {question:"' '",answer:"Single inverted commas"},
-          {question:"'",answer:"Apostrophe"},
-          {question:"( )",answer:"Parentheses"}
-        ]}
+      id: 3, name: "ROUND 3", subtitle: "Grammar",
+      description: "Grammatical knowledge.",
+      introQuote: "Time to test your grammar skills. ⚡",
+      endQuote: "Round 3 DONE! ⚡",
+      color: "#FF6F00",
+      questions: [
+        {
+          id: "r3q1", type: "mcq", category: "GRAMMAR", title: "Multiple Choice Questions",
+          instruction: "Select the correct option.",
+          marks: "Total: 13 marks",
+          items: [
+            { q: '1. "Neither of the boys ___ ready."', options: ["A) are", "B) is", "C) were", "D) be"], answer: 1 },
+            { q: '2. Part of speech: "She sang beautifully." (beautifully)', options: ["A) Noun", "B) Adjective", "C) Adverb", "D) Verb"], answer: 2 },
+            { q: '3. Correct punctuation:', options: ["A) Its a lovely day, isnt it", "B) It's a lovely day, isn't it?", "C) Its' a lovely day isn't it", "D) It is a lovely day, isnt' it"], answer: 1 },
+            { q: '4. Past-tense of "swim."', options: ["A) swimmed", "B) swam", "C) swum", "D) sweemed"], answer: 1 },
+            { q: '5. Correct plural:', options: ["A) Two mouses ran by.", "B) Two mice ran by.", "C) Two mices ran by.", "D) Two mouse ran by."], answer: 1 },
+            { q: '6. "She is good ___ mathematics."', options: ["A) in", "B) at", "C) on", "D) for"], answer: 1 },
+            { q: '7. Synonym for "enormous":', options: ["A) Tiny", "B) Gigantic", "C) Narrow", "D) Slow"], answer: 1 },
+            { q: '8. Correct subject-verb agreement:', options: ["A) The team are playing well.", "B) The team is playing well.", "C) The team be playing well.", "D) The team playing well."], answer: 1 },
+            { q: '9. Correctly spelled word:', options: ["A) Recieve", "B) Receive", "C) Receve", "D) Reciev"], answer: 1 },
+            { q: '10. Grammatically correct sentence:', options: ["A) Me and him went to the fair.", "B) Him and I went to the fair.", "C) He and I went to the fair.", "D) I and he went to the fair."], answer: 2 },
+            { q: '11. Coordinating conjunction:', options: ["a) I like tea although I like coffee.", "b) I like tea, but I also like coffee.", "c) I like tea unless I like coffee.", "d) I like tea because coffee."], answer: 1 },
+            { q: '12. Simple present: She ___ to school every day.', options: ["a) go", "b) goes", "c) going", "d) gone"], answer: 1 },
+            { q: '13. Tense: "By next year, she will have graduated."', options: ["a) Future continuous", "b) Future perfect", "c) Simple future", "d) Future perfect continuous"], answer: 1 }
+          ]
+        },
+        {
+          id: "r3q2", type: "fillin", category: "GRAMMAR", title: "Fill-in & Transformation",
+          instruction: "Fill in the blanks or follow the instructions.",
+          marks: "Total: 2 marks",
+          columnA: "Question", columnB: "Answer",
+          items: [
+            { question: "He is travelling ___ bus.", answer: "by" },
+            { question: "Change the voice: Write the exercise.", answer: "Let the exercise be written." }
+          ]
+        }
       ]
     },
     {
-      id:4,name:"ROUND 4",subtitle:"Vocabulary — 1 Mark Per Correct Answer",
-      description:"Open-ended. More correct examples = more marks!",
-      introQuote:"Final round! Give it everything you've got! ⚡",
-      endQuote:"QUIZ COMPLETE! You absolute legends! ⚡⚡⚡⚡",
-      color:"#FFD600",
-      questions:[
-        {id:"q16a",type:"homonym",category:"VOCABULARY",title:"Q16A — Homonyms",instruction:"Give two different meanings for each word. (Bank: Financial institution / Bank of a river)",marks:"1 mark per valid meaning pair",columnA:"Word",columnB:"Meaning 1",columnC:"Meaning 2",items:[
-          {word:"Bat",m1:"Cricket bat",m2:"Flying mammal"},
-          {word:"Bark",m1:"Sound a dog makes",m2:"Outer cover of a tree"},
-          {word:"Light",m1:"Illumination",m2:"Not heavy"},
-          {word:"Fair",m1:"Carnival / exhibition",m2:"Just and impartial"},
-          {word:"Spring",m1:"Season after winter",m2:"Metal coil / to jump"},
-          {word:"Arm",m1:"Part of the body",m2:"To arm with weapons"}
-        ]},
-        {id:"q16b",type:"homophone",category:"VOCABULARY",title:"Q16B — Homophones",instruction:"Write a meaningful sentence for each word in the pair. (Write/Right example given.)",marks:"1 mark per correct sentence pair",columnA:"Pair",columnB:"Sentence A",columnC:"Sentence B",items:[
-          {pair:"Flour / Flower",sA:"Mix the flour with water.",sB:"She wore a flower in her hair."},
-          {pair:"Bare / Bear",sA:"She walked with bare feet.",sB:"A bear roamed the forest."},
-          {pair:"Meat / Meet",sA:"We bought meat from the market.",sB:"Let us meet at noon."},
-          {pair:"Sea / See",sA:"The sea was calm today.",sB:"I can see the mountains clearly."},
-          {pair:"Knot / Not",sA:"He tied a tight knot.",sB:"She is not coming today."},
-          {pair:"Pair / Pear",sA:"I need a new pair of shoes.",sB:"She ate a ripe pear."}
-        ]},
-        {id:"q16c",type:"match",category:"VOCABULARY",title:"Q16C — Eponyms",instruction:"Match each eponym to its meaning or origin. (Mammoth task: Enormous work — from the woolly mammoth.)",marks:"1 mark each | 13 eponyms",columnA:"Eponym",columnB:"Meaning / Origin",items:[
-          {question:"Boycott",answer:"To refuse dealings — from Captain Charles Boycott (Ireland, 1880)"},
-          {question:"Sandwich",answer:"Food between bread slices — from the Earl of Sandwich"},
-          {question:"Herculean effort",answer:"Requiring extraordinary strength — from Hercules (Greek myth)"},
-          {question:"Quixotic",answer:"Idealistic and impractical — from Don Quixote by Cervantes"},
-          {question:"Machiavellian",answer:"Cunning and unscrupulous in politics — from Niccolo Machiavelli"},
-          {question:"Draconian",answer:"Excessively harsh laws — from Draco, ancient Athenian lawmaker"},
-          {question:"Narcissism",answer:"Excessive self-admiration — from Narcissus who fell in love with his reflection"},
-          {question:"Spartan lifestyle",answer:"Simple and disciplined, without luxury — from the city-state of Sparta"},
-          {question:"Platonic love",answer:"Deep friendship without romance — from the philosopher Plato"},
-          {question:"Odyssey",answer:"A long adventurous journey — from Homer's hero Odysseus"},
-          {question:"Babel",answer:"A noisy confused mixture of voices — from the Tower of Babel (Bible)"},
-          {question:"Utopia",answer:"An imagined perfect society — from Thomas More's book Utopia"},
-          {question:"Jeremiad",answer:"A long mournful complaint — from the Prophet Jeremiah's lamentations"}
-        ]},
-        {id:"q16d",type:"prefix_suffix",category:"VOCABULARY",title:"Q16D — Prefixes & Suffixes",instruction:"Form a new word by adding the prefix or suffix shown.",marks:"1 mark each | 8 prefixes + 8 suffixes",
-          prefixes:[
-            {root:"un- + happy",answer:"unhappy"},
-            {root:"mis- + understand",answer:"misunderstand"},
-            {root:"pre- + view",answer:"preview"},
-            {root:"dis- + agree",answer:"disagree"},
-            {root:"re- + write",answer:"rewrite"},
-            {root:"over- + come",answer:"overcome"},
-            {root:"anti- + social",answer:"antisocial"},
-            {root:"sub- + marine",answer:"submarine"}
-          ],
-          suffixes:[
-            {root:"kind + -ness",answer:"kindness"},
-            {root:"teach + -er",answer:"teacher"},
-            {root:"beauty + -ful",answer:"beautiful"},
-            {root:"act + -ion",answer:"action"},
-            {root:"child + -hood",answer:"childhood"},
-            {root:"hero + -ism",answer:"heroism"},
-            {root:"govern + -ment",answer:"government"},
-            {root:"hope + -less",answer:"hopeless"}
+      id: 4, name: "ROUND 4", subtitle: "Dictation Passage",
+      description: "Listening, spelling & punctuation.",
+      introQuote: "Listen to the passage and write it down accurately. ⚡",
+      endQuote: "Round 4 DONE! ⚡",
+      color: "#FFD600",
+      questions: [
+        {
+          id: "r4q1", type: "passage", category: "DICTATION", title: "Dictation Passage",
+          instruction: "The passage will be read aloud. Write it down accurately, including punctuation.",
+          marks: "Total: 20 marks",
+          text: "Every year, our school celebrates a Spelling Bee to encourage students to read widely and speak confidently. Participants must listen carefully, think quickly, and express themselves clearly. A good speller pays attention not only to letters but also to meaning and pronunciation. Practice, patience, and curiosity are the true keys to success. Today, we wish every contestant good luck and steady nerves."
+        }
+      ]
+    },
+    {
+      id: 5, name: "ROUND 5", subtitle: "Listening Comprehension",
+      description: "Listening and understanding.",
+      introQuote: "Listen to the passage carefully and answer the questions from memory. ⚡",
+      endQuote: "QUIZ COMPLETE! ⚡⚡",
+      color: "#FFB300",
+      questions: [
+        {
+          id: "r5q1", type: "passage", category: "COMPREHENSION", title: "Listening Passage",
+          instruction: "Listen to the passage carefully.",
+          marks: "",
+          text: "Honeybees are remarkable insects that live in large colonies of up to sixty thousand members. Each colony has a single queen, thousands of worker bees, and a smaller number of drones. Worker bees collect nectar and pollen from flowers, which they carry back to the hive to make honey. They communicate the location of good flowers to each other through a special movement called the waggle dance. Bees are essential for pollinating crops, which means they play a vital role in producing much of the food we eat. Scientists have become concerned in recent years because bee populations are declining due to pesticides, habitat loss, and disease, so many communities are now planting bee-friendly gardens to help them thrive."
+        },
+        {
+          id: "r5q2", type: "mcq", category: "COMPREHENSION", title: "Comprehension Questions",
+          instruction: "Answer from memory, without referring back to any notes.",
+          marks: "Total: 10 marks",
+          items: [
+            { q: "1. How many members can a large bee colony have?", options: ["A) Six hundred", "B) Six thousand", "C) Sixty thousand", "D) Sixteen thousand"], answer: 2 },
+            { q: "2. What do worker bees collect from flowers?", options: ["A) Water and leaves", "B) Nectar and pollen", "C) Seeds and bark", "D) Sap and dew"], answer: 1 },
+            { q: "3. What is the \"waggle dance\" used for?", options: ["A) Attracting a mate", "B) Warning of danger", "C) Communicating flower locations", "D) Cooling the hive"], answer: 2 },
+            { q: "4. Why are bees important to humans?", options: ["A) They produce wax for candles", "B) They pollinate crops we eat", "C) They control other insects", "D) They keep gardens tidy"], answer: 1 },
+            { q: "5. According to the passage, why are bee populations declining?", options: ["A) Too much rainfall", "B) Pesticides, habitat loss, and disease", "C) Lack of sunlight", "D) Overpopulation of hives"], answer: 1 }
           ]
         }
       ]
@@ -985,13 +911,77 @@ function renderQuestionTable(q){
     wrap.innerHTML = buildMatchFillinTable(q);
   } else if(q.type==='table3col'){
     wrap.innerHTML = build3ColTable(q);
+  } else if(q.type==='table4col'){
+    wrap.innerHTML = build4ColTable(q);
   } else if(q.type==='homonym'){
     wrap.innerHTML = buildHomonymTable(q);
   } else if(q.type==='homophone'){
     wrap.innerHTML = buildHomophoneTable(q);
   } else if(q.type==='prefix_suffix'){
     wrap.innerHTML = buildPrefixSuffixTable(q);
+  } else if(q.type==='list_hidden'){
+    wrap.innerHTML = buildListHidden(q);
+  } else if(q.type==='mcq'){
+    wrap.innerHTML = buildMCQ(q);
+  } else if(q.type==='passage'){
+    wrap.innerHTML = buildPassage(q);
   }
+}
+
+function build4ColTable(q){
+  let rows = '';
+  q.items.forEach((it,i)=>{
+    const c1 = `<td class="given-cell">${escapeHtml(it.c1)}</td>`;
+    const c2 = (it.blankCol===2)
+      ? `<td class="answer-cell blank" data-blank="true" data-answer="${escapeHtml(it.c2)}">___</td>`
+      : `<td class="given-cell">${escapeHtml(it.c2)}</td>`;
+    const c3 = (it.blankCol===3)
+      ? `<td class="answer-cell blank" data-blank="true" data-answer="${escapeHtml(it.c3)}">___</td>`
+      : `<td class="given-cell">${escapeHtml(it.c3)}</td>`;
+    const c4 = (it.blankCol===4)
+      ? `<td class="answer-cell blank" data-blank="true" data-answer="${escapeHtml(it.c4)}">___</td>`
+      : `<td class="given-cell">${escapeHtml(it.c4)}</td>`;
+
+    rows += `<tr><td class="col-num">${i+1}</td>${c1}${c2}${c3}${c4}</tr>`;
+  });
+  return `<table class="quiz-table">
+    <thead><tr><th style="width:60px">#</th><th>${escapeHtml(q.col1)}</th><th>${escapeHtml(q.col2)}</th><th>${escapeHtml(q.col3)}</th><th>${escapeHtml(q.col4)}</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function buildListHidden(q){
+  let rows = '';
+  q.items.forEach((it,i)=>{
+    rows += `<tr>
+      <td class="col-num">${i+1}</td>
+      <td class="answer-cell blank" data-answer="${escapeHtml(it)}">___</td>
+    </tr>`;
+  });
+  return `<table class="quiz-table">
+    <thead><tr><th style="width:60px">#</th><th>Word</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function buildMCQ(q){
+  let rows = '';
+  q.items.forEach((it,i)=>{
+    const opts = it.options.map((o, idx) => {
+      const isAns = idx === it.answer;
+      return `<div class="mcq-option ${isAns ? 'mcq-ans blank' : ''}" data-answer="${isAns ? 'true' : 'false'}">${escapeHtml(o)}</div>`;
+    }).join('');
+
+    rows += `<div class="mcq-item">
+      <div class="mcq-q">${escapeHtml(it.q)}</div>
+      <div class="mcq-options">${opts}</div>
+    </div>`;
+  });
+  return `<div class="mcq-container">${rows}</div>`;
+}
+
+function buildPassage(q){
+  return `<div class="passage-box">${escapeHtml(q.text)}</div>`;
 }
 
 function buildMatchFillinTable(q){
@@ -1266,6 +1256,29 @@ function revealAnswers(q){
       },i*40);
     });
   }
+  else if(q.type==='table4col' || q.type==='list_hidden'){
+    const cells = document.querySelectorAll('#q-table-wrap .answer-cell[data-answer]');
+    cells.forEach((cell,i)=>{
+      setTimeout(()=>{
+        const ans = cell.getAttribute('data-answer');
+        cell.innerHTML = '<span style="color:#00E676;margin-right:8px">✓</span>'+escapeHtml(ans);
+        cell.classList.remove('blank');
+        cell.classList.add('revealed');
+        gsap.fromTo(cell,{backgroundColor:'rgba(0,230,118,0.45)'},{backgroundColor:'rgba(0,230,118,0.12)',duration:0.6});
+      },i*40);
+    });
+  }
+  else if(q.type==='mcq'){
+    const cells = document.querySelectorAll('#q-table-wrap .mcq-ans');
+    cells.forEach((cell,i)=>{
+      setTimeout(()=>{
+        cell.classList.remove('blank');
+        cell.classList.add('revealed');
+        cell.innerHTML = '<span style="color:#00E676;margin-right:8px">✓</span>' + cell.innerHTML;
+        gsap.fromTo(cell,{backgroundColor:'rgba(0,230,118,0.45)'},{backgroundColor:'rgba(0,230,118,0.12)',duration:0.6});
+      },i*40);
+    });
+  }
 }
 
 function showCorrectBanner(){
@@ -1443,15 +1456,15 @@ function renderWinnersScreen(){
       <div class="wf-sub">Fill in winner names then click ANNOUNCE</div>
       <div class="winner-form">
         <div class="wf-field">
-          <div class="wf-label">🥇 1ST PLACE</div>
+          <label class="wf-label" for="in-first">🥇 1ST PLACE</label>
           <input class="wf-input" id="in-first" placeholder="Champion Name" maxlength="40">
         </div>
         <div class="wf-field">
-          <div class="wf-label">🥈 2ND PLACE</div>
+          <label class="wf-label" for="in-second">🥈 2ND PLACE</label>
           <input class="wf-input" id="in-second" placeholder="Runner-up Name" maxlength="40">
         </div>
         <div class="wf-field">
-          <div class="wf-label">🥉 3RD PLACE</div>
+          <label class="wf-label" for="in-third">🥉 3RD PLACE</label>
           <input class="wf-input" id="in-third" placeholder="Third Place Name" maxlength="40">
         </div>
         <button class="announce-btn" id="announce-btn">🏆 ANNOUNCE WINNERS ⚡</button>
@@ -1644,11 +1657,11 @@ function renderPresenterPanel(){
   const urgent = phase==='timeup';
 
   panel.innerHTML = `
-    <button class="pp-btn pp-reveal ${urgent?'urgent':''}" ${canReveal?'':'disabled'} id="pp-reveal">REVEAL ⚡</button>
-    <button class="pp-btn pp-next" ${canNext?'':'disabled'} id="pp-next">NEXT →</button>
-    <button class="pp-btn pp-skip" ${canSkip?'':'disabled'} id="pp-skip">SKIP TIMER</button>
-    <button class="pp-btn pp-pause ${STATE.timerPaused?'paused':''}" ${phase==='revealed'?'disabled':''} id="pp-pause">${STATE.timerPaused?'▶ RESUME':'⏸ PAUSE'}</button>
-    <button class="pp-btn pp-mute" id="pp-mute">${STATE.isMuted?'🔇 MUTED':'🔊 SOUND'}</button>`;
+    <button class="pp-btn pp-reveal ${urgent?'urgent':''}" ${canReveal?'':'disabled'} id="pp-reveal" title="Shortcut: Space / R">REVEAL ⚡</button>
+    <button class="pp-btn pp-next" ${canNext?'':'disabled'} id="pp-next" title="Shortcut: Space / N / Right Arrow">NEXT →</button>
+    <button class="pp-btn pp-skip" ${canSkip?'':'disabled'} id="pp-skip" title="Shortcut: S">SKIP TIMER</button>
+    <button class="pp-btn pp-pause ${STATE.timerPaused?'paused':''}" ${phase==='revealed'?'disabled':''} id="pp-pause" title="Shortcut: P">${STATE.timerPaused?'▶ RESUME':'⏸ PAUSE'}</button>
+    <button class="pp-btn pp-mute" id="pp-mute" title="Shortcut: M">${STATE.isMuted?'🔇 MUTED':'🔊 SOUND'}</button>`;
   document.getElementById('pp-reveal').addEventListener('click',triggerReveal);
   document.getElementById('pp-next').addEventListener('click',advanceQuestion);
   document.getElementById('pp-skip').addEventListener('click',skipTimer);
